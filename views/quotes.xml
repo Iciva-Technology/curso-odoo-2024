@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="quotes_view_form" model="ir.ui.view">
+        <field name="name">quotes.view.form</field>
+        <field name="model">quotes</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"></field>
+                        <field name="user_id"></field>
+                        <field name="date"></field>
+                        <field name="service"></field>
+                        <field name="confirm"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="quotes_view_tree" model="ir.ui.view">
+        <field name="name">quotes.view.tree</field>
+        <field name="model">quotes</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"></field>
+                <field name="date"></field>
+                <field name="service"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="quotes_action" model="ir.actions.act_window">
+        <field name="name">Citas</field>
+        <field name="res_model">quotes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
