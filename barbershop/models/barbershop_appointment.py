@@ -1,8 +1,9 @@
 from odoo import models, fields
 
-class Quotes(models.Model):
-    _name = "quotes"
-    _description = "citas"
+
+class BarbershopAppointment(models.Model):
+    _name = "barbershop.appointment"
+    _description = "Citas"
 
     name = fields.Char(string="Nombre de cliente")
     date = fields.Date(string="Fecha de cita", required=True)

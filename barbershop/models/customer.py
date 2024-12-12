@@ -11,4 +11,4 @@ class Customer(models.Model):
     email = fields.Char(string="Email")
     gender = fields.Selection(selection=[('male', 'Masculino'), ('fale', 'Femenino')], string="Genero")
     date = fields.Date(string="Fecha de nacimiento")
-    quotes_ids = fields.One2many('quotes', 'user_id')
+    quotes_ids = fields.One2many('barbershop.appointment', 'user_id')
