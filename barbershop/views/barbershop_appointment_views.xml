@@ -8,7 +8,7 @@
                 <sheet>
                     <group>
                         <field name="name"></field>
-                        <field name="user_id"></field>
+                        <field name="partner_id"></field>
                         <field name="date"></field>
                         <field name="service"></field>
                         <field name="confirm"></field>

@@ -5,16 +5,10 @@
         name="Barbería"
         sequence="1"/>
     <menuitem
-        id="customer_data_menu"
-        name="CLiente"
-        action="barbershop.customer_action"
-        parent="customer_menu"
-        sequence="2"/>
-    <menuitem
         id="barbershop_appointment_data_menu"
         name="Citas"
         action="barbershop.barbershop_appointment_action"
         parent="customer_menu"
-        sequence="1"/>
+        sequence="2"/>
     
 </odoo>
