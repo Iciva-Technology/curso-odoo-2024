@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <record id="quotes_view_form" model="ir.ui.view">
-        <field name="name">quotes.view.form</field>
-        <field name="model">quotes</field>
+    <record id="barbershop_appointment_view_form" model="ir.ui.view">
+        <field name="name">barbershop.appointment.view.form</field>
+        <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
@@ -18,9 +18,9 @@
         </field>
     </record>
 
-    <record id="quotes_view_tree" model="ir.ui.view">
-        <field name="name">quotes.view.tree</field>
-        <field name="model">quotes</field>
+    <record id="barbershop_appointment_view_tree" model="ir.ui.view">
+        <field name="name">barbershop.appointment.view.tree</field>
+        <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
             <tree string="">
                 <field name="name"></field>
@@ -30,9 +30,9 @@
         </field>
     </record>
 
-    <record id="quotes_action" model="ir.actions.act_window">
+    <record id="barbershop_appointment_action" model="ir.actions.act_window">
         <field name="name">Citas</field>
-        <field name="res_model">quotes</field>
+        <field name="res_model">barbershop.appointment</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

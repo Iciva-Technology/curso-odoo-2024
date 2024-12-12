@@ -1,5 +1,5 @@
 {
-    'name': 'Barberia',
+    'name': 'Barbería',
     'category': 'Curso',
     'version': '16.0.0.0.0',
     'license': 'AGPL-3',
