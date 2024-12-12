@@ -10,7 +10,6 @@
                         <field name="name"></field>
                         <field name="partner_id"></field>
                         <field name="date"></field>
-                        <field name="service"></field>
                         <field name="confirm"></field>
                         <field name="service_ids" widget="many2many_tags"></field>
                     </group>
@@ -26,7 +25,6 @@
             <tree string="">
                 <field name="name"></field>
                 <field name="date"></field>
-                <field name="service"></field>
             </tree>
         </field>
     </record>
