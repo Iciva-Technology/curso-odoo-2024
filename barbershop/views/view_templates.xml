@@ -1,0 +1,129 @@
+<!-- Tree view -->
+
+<record id="<model_name>_view_tree" model="ir.ui.view">
+    <field name="name">view.name</field>
+    <field name="model">model.name</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="my_field_1"/>
+            <field name="my_field_2"/>
+        </tree>
+    </field>
+</record>
+
+<!-- Form view -->
+
+<record id="<model_name>_view_form" model="ir.ui.view">
+    <field name="name">view.name</field>
+    <field name="model">model_name</field>
+    <field name="arch" type="xml">
+        <form>
+            <field name="my_field_1"/>
+            <field name="my_field_2"/>
+        </form>
+    </field>
+</record>
+
+<!-- Notebook -->
+
+<notebook>
+    <page string="Page string 1" name="page_name_1">
+        <field name="my_field_1"/>
+    </page>
+    <page string="Page string 2" name="page_name_2">
+        <field name="my_field_2"/>
+    </page>
+</notebook>
+
+<!-- Search view -->
+
+<record id="<model_name>_view_search" model="ir.ui.view">
+    <field name="name">view.name</field>
+    <field name="model">model_name</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="my_field_1"/>
+            <field name="my_field_2"/>
+            <field name="my_field_3"/>
+            <separator/>
+            <filter string="Filter name 1" name="filter_name" domain="[]"/>
+            <group expand="0" string="Group By">
+                <filter string="Group name 1" name="group_by_<field_name>" domain="[]" context="{'group_by': '<field_name>'}"/>
+                <filter string="Group name 2" name="group_by_<field_name>" domain="[]" context="{'group_by': '<field_name>'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+<!-- Actions -->
+<record id="action_<model_name>" model="ir.actions.act_window">
+    <field name="name">action.name</field>
+    <field name="res_model">model.name</field>
+    <field name="view_mode">tree,form,kanban</field>
+    <field name="domain">[]</field>
+</record>
+
+<!-- Menus -->
+
+<menuitem
+    id="menu_<module_name>_root"
+    name="Menu name"
+    sequence="1"
+/>
+
+<menuitem
+    id="menu_<model_name>"
+    name="Menu name"
+    parent="<module_name>.<parent_menu_id>"
+    action="<action_id>"
+    sequence="1"
+/>
+
+
+<!-- Views attributes -->
+
+<!-- String -->
+
+string="My string"
+
+<!-- Readonly -->
+
+readonly="1" / readonly="True"
+readonly="0" / readonly="False"
+
+<!-- Required -->
+
+required="1"
+
+<!-- Invisible -->
+
+invisible="1"
+
+<!-- Optional -->
+
+optional="hide"
+optional="show"
+
+<!--Attrs -->
+
+attrs="{'readonly': [domain]}
+attrs="{'invisible': [domain]}
+attrs="{'invisible': [domain], 'readonly': [domain]}
+
+<!--Options-->
+
+options="{'no_open': True, 'no_create': True}"
+options="{'clickable': 'True', 'fold_field': 'fold'}"/>
+
+
+<!-- Widgets -->
+
+ - badge
+ - many2one_avatar_user
+ - boolean_toggle
+ - statusbar
+ - image
+ - many2many
+ - one2many
+ - many2many_tags
+ 
