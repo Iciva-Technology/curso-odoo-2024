@@ -9,7 +9,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/customer.xml',
-        'views/quotes.xml',
+        'views/barbershop_appointment_views.xml',
         'views/menu.xml',
     ],
     'assets': {
