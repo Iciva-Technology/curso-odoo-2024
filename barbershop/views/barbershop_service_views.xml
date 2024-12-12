@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="barbershop_service_view_tree" model="ir.ui.view">
+        <field name="name">barbershop.service.view.tree</field>
+        <field name="model">barbershop.service</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="duration"/>
+                <field name="price"/>
+                <field name="difficulty" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="barbershop_service_view_form" model="ir.ui.view">
+        <field name="name">barbershop.service.view.form</field>
+        <field name="model">barbershop.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="duration" required="1"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="difficulty"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Descipción" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Cuidados posteriores" name="aftercare" attrs="{'invisible': ['|', ('difficulty', '!=', 'hard'), ('duration', '>', 10)]}">
+                            <field name="aftercare" attrs="{'required': [('difficulty', '=', 'hard')]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_barbershop_service" model="ir.actions.act_window">
+        <field name="name">Servicios</field>
+        <field name="res_model">barbershop.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    
+</odoo>

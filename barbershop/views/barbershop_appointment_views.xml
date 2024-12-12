@@ -12,6 +12,7 @@
                         <field name="date"></field>
                         <field name="service"></field>
                         <field name="confirm"></field>
+                        <field name="service_ids" widget="many2many_tags"></field>
                     </group>
                 </sheet>
             </form>

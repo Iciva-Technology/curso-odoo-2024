@@ -5,9 +5,9 @@ class BarbershopService(models.Model):
     _name = "barbershop.service"
     _description = "Servicios"
 
-    name = fields.Char(string="Nombre")
+    name = fields.Char(string="Nombre", required=True)
     description = fields.Html(string="Descripción")
-    duration = fields.Integer(string="Duración", help="Duranción del servicio expresado en minutos")
+    duration = fields.Integer(string="Duración", help="Duración del servicio expresado en minutos")
     price = fields.Float(string="Precio")
     difficulty = fields.Selection([
         ('easy', 'Fácil'),
