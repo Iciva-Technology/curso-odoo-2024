@@ -19,6 +19,17 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button 
+                            class="oe_stat_button"
+                            type="object"
+                            name="action_appointment_id"
+                            icon="fa-calendar-check-o"
+                            context="{'active_id': active_id}">
+                            <field string="Citas" name="number_of_appointments" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
                     <group>
                         <group>
                             <field name="name"/>
