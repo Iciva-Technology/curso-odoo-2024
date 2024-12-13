@@ -4,15 +4,21 @@
         <field name="name">barbershop.appointment.view.form</field>
         <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
-            <form string="">
+            <form string="Citas">
                 <sheet>
                     <group>
                         <field name="name"></field>
                         <field name="partner_id"></field>
-                        <field name="date"></field>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
                         <field name="confirm"></field>
                         <field name="service_ids" widget="many2many_tags"></field>
+                        <field name="state"/>
                     </group>
+                    <footer>
+                        <button name="action_confirm" string="Confirmar" type="object" class="btn-primary" states="requested"/>
+                        <button name="action_cancel" string="Cancelar" type="object" class="btn-secondary" states="requested,confirmed"/>
+                    </footer>
                 </sheet>
             </form>
         </field>
@@ -22,12 +28,53 @@
         <field name="name">barbershop.appointment.view.tree</field>
         <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
-            <tree string="">
+            <tree string="Citas">
                 <field name="name"></field>
-                <field name="date"></field>
+                <field name="partner_id"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
+
+    <record id="view_barbershop_appointment_kanban" model="ir.ui.view">
+        <field name="name">barbershop.appointment.kanban</field>
+        <field name="model">barbershop.appointment</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-att-class="'o_kanban_record'">
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <span><field name="partner_id"/></span>
+                            </div>
+                            <div>
+                                <field name="state"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_barbershop_appointment_search" model="ir.ui.view">
+        <field name="name">barbershop.appointment.search</field>
+        <field name="model">barbershop.appointment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter string="Confirmado" name="confirmed_filter" domain="[('state','=','confirmed')]"/>
+            </search>
+        </field>
+    </record>
+
 
     <record id="barbershop_appointment_action" model="ir.actions.act_window">
         <field name="name">Citas</field>

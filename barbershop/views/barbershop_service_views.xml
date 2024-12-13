@@ -9,6 +9,7 @@
                 <field name="duration"/>
                 <field name="price"/>
                 <field name="difficulty" optional="hide"/>
+                <field name="appointment_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
@@ -23,6 +24,7 @@
                         <group>
                             <field name="name"/>
                             <field name="duration" required="1"/>
+                            <field name="appointment_ids" widget="many2many_tags"/>
                         </group>
                         <group>
                             <field name="price"/>
