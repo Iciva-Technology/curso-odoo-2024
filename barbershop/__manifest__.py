@@ -5,12 +5,13 @@
     'license': 'AGPL-3',
     'author': 'Iciva Technology',
     'depends': [
+        'contacts',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/customer.xml',
         'views/barbershop_appointment_views.xml',
-        'views/menu.xml',
+        'views/barbershop_service_views.xml',
+        'views/barbershop_menu.xml',
     ],
     'assets': {
         'web.assets_frontend': [

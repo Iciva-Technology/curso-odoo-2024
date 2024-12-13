@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem
+        id="menu_barbershop_root"
+        name="Barbería"
+        action="barbershop.barbershop_appointment_action"
+        sequence="1"/>
+    <menuitem
+        id="menu_barbershop_service"
+        name="Servicio"
+        parent="menu_barbershop_root"
+        action="barbershop.action_barbershop_service"
+        sequence="2"
+    />
+    
+</odoo>
