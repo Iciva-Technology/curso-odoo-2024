@@ -6,7 +6,7 @@
             <button type="button" onclick="window.location.href='/web#action=barbershop.barbershop_appointment_action';" class="btn btn-primary">
                 Solicitar Cita
             </button>
-            <button type="button" onclick="window.location.href='/web#action=barbershop.action_barbershop_service';" class="btn btn-secondary">
+            <button type="button" onclick="window.location.href='/web#action=barbershop.barbershop_service_action';" class="btn btn-secondary">
                 Ver Servicios Disponibles
             </button>
         </div>
@@ -16,5 +16,4 @@
         <field name="name">Vista Principal</field>
         <field name="tag">barbershop_main_view</field>
     </record>
-
 </odoo>

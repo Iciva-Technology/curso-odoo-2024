@@ -1,7 +1,11 @@
 from odoo import http
 from odoo.http import request
 
-class BarbershopMain(http.Controller):
-    @http.route('/barbershop/main', type='http', auth='user')
-    def main_view(self):
-        return request.render('barbershop.barbershop_main_view', {})
+class BarbershopController(http.Controller):
+    @http.route('/barbershop', auth='public', website=True)
+    def barbershop_main(self, **kwargs):
+        return request.render('barbershop.barbershop_main_view')
+
+
+
+    

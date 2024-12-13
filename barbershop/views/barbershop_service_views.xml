@@ -52,7 +52,7 @@
         </field>
     </record>
 
-    <record id="action_barbershop_service" model="ir.actions.act_window">
+    <record id="barbershop_service_action" model="ir.actions.act_window">
         <field name="name">Servicios</field>
         <field name="res_model">barbershop.service</field>
         <field name="view_mode">tree,form</field>
