@@ -15,3 +15,5 @@ class BarbershopService(models.Model):
         ('hard', 'Difícil')], string="Dificultad")
     image = fields.Binary(string="Imagen")
     aftercare = fields.Html(string="Cuidados posteriores")
+    appointment_ids = fields.Many2many('barbershop.appointment', string="Citas", required=True, tracking=True)
+
