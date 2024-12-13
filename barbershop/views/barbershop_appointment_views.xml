@@ -11,14 +11,9 @@
                         <field name="partner_id"></field>
                         <field name="start_time"/>
                         <field name="end_time"/>
-                        <field name="confirm"></field>
                         <field name="service_ids" widget="many2many_tags"></field>
                         <field name="state"/>
                     </group>
-                    <footer>
-                        <button name="action_confirm" string="Confirmar" type="object" class="btn-primary" states="requested"/>
-                        <button name="action_cancel" string="Cancelar" type="object" class="btn-secondary" states="requested,confirmed"/>
-                    </footer>
                 </sheet>
             </form>
         </field>
@@ -38,23 +33,42 @@
         </field>
     </record>
 
-    <record id="view_barbershop_appointment_kanban" model="ir.ui.view">
-        <field name="name">barbershop.appointment.kanban</field>
+    <record id="barbershop_appointment_view_kanban" model="ir.ui.view">
+        <field name="name">barbershop.appointment.view.kanban</field>
         <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban default_group_by="state" class="o_kanban_mobile">
                 <field name="name"/>
                 <field name="partner_id"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
                 <field name="state"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-att-class="'o_kanban_record'">
-                            <strong><field name="name"/></strong>
-                            <div>
-                                <span><field name="partner_id"/></span>
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings row">
+                                    <div class="col-12">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <field name="state"/>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Cliente: <field name="partner_id"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Desde: <field name="start_time"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Hasta: <field name="end_time"/></span>
+                                </div>
                             </div>
                         </div>
                     </t>
@@ -64,13 +78,23 @@
     </record>
 
     <record id="view_barbershop_appointment_search" model="ir.ui.view">
-        <field name="name">barbershop.appointment.search</field>
+        <field name="name">barbershop.appointment.view.search</field>
         <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
                 <field name="partner_id"/>
-                <filter string="Confirmado" name="confirmed_filter" domain="[('state','=','confirmed')]"/>
+                <separator/>
+                <filter string="Solicitado" name="state_solicitado" domain="[('state', '=', 'requested')]"/>
+                <filter string="Confirmado" name="state_solicitado" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Llegó" name="state_solicitado" domain="[('state', '=', 'arrived')]"/>
+                <filter string="Siendo atendido" name="state_solicitado" domain="[('state', '=', 'in_service')]"/>
+                <filter string="Finalizado" name="state_solicitado" domain="[('state', '=', 'completed')]"/>
+                <filter string="Cancelado" name="state_solicitado" domain="[('state', '=', 'cancelled')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Estado" name="group_by_state_id" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter string="Cliente" name="group_by_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+                </group>
             </search>
         </field>
     </record>
@@ -79,6 +103,6 @@
     <record id="barbershop_appointment_action" model="ir.actions.act_window">
         <field name="name">Citas</field>
         <field name="res_model">barbershop.appointment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 </odoo>

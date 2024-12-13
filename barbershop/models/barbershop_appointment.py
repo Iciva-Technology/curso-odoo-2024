@@ -4,12 +4,13 @@ from odoo import models, fields, api
 class BarbershopAppointment(models.Model):
     _name = "barbershop.appointment"
     _description = "Citas"
+    _rec_name = 'partner_id'
 
-    name = fields.Char(string="Referencia", required=True, tracking=True)
-    partner_id = fields.Many2one('res.partner', string="Cliente", required=True, tracking=True)
+    name = fields.Char(string="Referencia")
+    partner_id = fields.Many2one('res.partner', string="Cliente")
     start_time = fields.Datetime(string="Desde", required=True)
     end_time = fields.Datetime(string="Hasta", required=True)
-    service_ids = fields.Many2many('barbershop.service', string="Servicios", required=True)
+    service_ids = fields.Many2many('barbershop.service', string="Servicios")
     state = fields.Selection(
         [
             ('requested', 'Solicitado'),
@@ -21,16 +22,11 @@ class BarbershopAppointment(models.Model):
         ],
         string="Estado",
         default='requested',
-        tracking=True
+        tracking=True,
+        group_expand='_expand_groups'
     )
-    confirm = fields.Boolean(string="Confirmacion de cita", default = False)
 
-    def action_confirm(self):
-        """Cambia el estado a 'Confirmado'."""
-        for record in self:
-            record.state = 'confirmed'
-
-    def action_cancel(self):
-        """Cambia el estado a 'Cancelado'."""
-        for record in self:
-            record.state = 'cancelled'
+    @api.model
+    def _expand_groups(self, states, domain, order):
+        return ['requested', 'confirmed', 'arrived', 'in_service', 'completed', 'cancelled']
+    

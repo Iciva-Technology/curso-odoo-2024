@@ -11,6 +11,8 @@
         'security/ir.model.access.csv',
         'views/barbershop_appointment_views.xml',
         'views/barbershop_service_views.xml',
+        'views/barbershop_task_views.xml',
+        # 'views/barbershop_main_view.xml',
         'views/barbershop_menu.xml',
     ],
     'assets': {

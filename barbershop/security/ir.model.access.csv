@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_barbershop_appointment,barbershop_appointment,model_barbershop_appointment,base.group_user,1,1,1,1
 access_barbershop_service,barbershop_service,model_barbershop_service,base.group_user,1,1,1,1
+access_barbershop_task,barbershop_task,model_barbershop_task,base.group_user,1,1,1,1
+
+

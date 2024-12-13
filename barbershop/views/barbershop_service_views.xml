@@ -19,27 +19,35 @@
         <field name="model">barbershop.service</field>
         <field name="arch" type="xml">
             <form>
-                <sheet>
-                    <group>
+                <header>
+                    <button name="action_view_tasks"
+                            type="object"
+                            string="Tareas Relacionadas"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('task_count', '=', 0)]}" />
+                </header>
+                    <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="duration" required="1"/>
-                            <field name="appointment_ids" widget="many2many_tags"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="duration" required="1"/>
+                                <field name="appointment_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="price"/>
+                                <field name="difficulty"/>
+                                <field name="task_count" invisible="1"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="price"/>
-                            <field name="difficulty"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Descipción" name="description">
-                            <field name="description"/>
-                        </page>
-                        <page string="Cuidados posteriores" name="aftercare" attrs="{'invisible': ['|', ('difficulty', '!=', 'hard'), ('duration', '>', 10)]}">
-                            <field name="aftercare" attrs="{'required': [('difficulty', '=', 'hard')]}"/>
-                        </page>
-                    </notebook>
-                </sheet>
+                        <notebook>
+                            <page string="Descipción" name="description">
+                                <field name="description"/>
+                            </page>
+                            <page string="Cuidados posteriores" name="aftercare" attrs="{'invisible': ['|', ('difficulty', '!=', 'hard'), ('duration', '>', 10)]}">
+                                <field name="aftercare" attrs="{'required': [('difficulty', '=', 'hard')]}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
             </form>
         </field>
     </record>

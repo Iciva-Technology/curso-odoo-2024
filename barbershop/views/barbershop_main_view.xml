@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="barbershop_main_view" name="Vista Principal">
+        <div class="o_barbershop_main">
+            <h1>Bienvenido a la Barbería</h1>
+            <button type="button" onclick="window.location.href='/web#action=barbershop.barbershop_appointment_action';" class="btn btn-primary">
+                Solicitar Cita
+            </button>
+            <button type="button" onclick="window.location.href='/web#action=barbershop.action_barbershop_service';" class="btn btn-secondary">
+                Ver Servicios Disponibles
+            </button>
+        </div>
+    </template>
+
+    <record id="barbershop_main_action" model="ir.actions.client">
+        <field name="name">Vista Principal</field>
+        <field name="tag">barbershop_main_view</field>
+    </record>
+
+</odoo>

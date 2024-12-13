@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="barbershop_task_view_form" model="ir.ui.view">
+        <field name="name">barbershop.task.view.form</field>
+        <field name="model">barbershop.task</field>
+        <field name="arch" type="xml">
+            <form string="Tareas">
+                <sheet>
+                    <group>
+                        <field name="name"></field>
+                        <field name="employee_id" widget="many2one_tags"></field>
+                        <field name="state_task"/>
+                        <field name="limit_date"/>
+                        <field name="priority_task"/>
+                        <field name="service_ids" widget="many2many_tags"></field>
+                        <field name="description"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="barbershop_task_view_tree" model="ir.ui.view">
+        <field name="name">barbershop.task.view.tree</field>
+        <field name="model">barbershop.task</field>
+        <field name="arch" type="xml">
+            <tree string="Tareas">
+                <field name="name"></field>
+                <field name="state_task"/>
+                <field name="limit_date"/>
+                <field name="priority_task"/>
+                <field name="employee_id" widget="many2one_tags"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="barbershop_task_view_kanban" model="ir.ui.view">
+        <field name="name">barbershop.task.view.kanban</field>
+        <field name="model">barbershop.task</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state_task" class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="limit_date"/>
+                <field name="priority_task"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings row">
+                                    <div class="col-12">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Empleado: <field name="employee_id"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Fecha limite: <field name="limit_date"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Prioridad: <field name="priority_task"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Servicios: <field name="service_ids" widget="many2many_tags"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_barbershop_task_search" model="ir.ui.view">
+        <field name="name">barbershop.task.view.search</field>
+        <field name="model">barbershop.task</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <separator/>
+                <filter string="Pendiente" name="state_task_pendiente" domain="[('state_task', '=', 'pending')]"/>
+                <filter string="En proceso" name="state_task_en_progreso" domain="[('state_task', '=', 'in_progress')]"/>
+                <filter string="Completada" name="state_task_completada" domain="[('state_task', '=', 'completed')]"/>
+                <filter string="Cancelada" name="state_task_cancelada" domain="[('state_task', '=', 'cancelled')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Prioridad" name="group_by_state_id" domain="[]" context="{'group_by': 'priority_task'}"/>
+                    <filter string="Empleado" name="group_by_partner_id" domain="[]" context="{'group_by': 'employee_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="barbershop_task_action" model="ir.actions.act_window">
+        <field name="name">Tareas</field>
+        <field name="res_model">barbershop.task</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+</odoo>
