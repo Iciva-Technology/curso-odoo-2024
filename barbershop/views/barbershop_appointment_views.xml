@@ -5,7 +5,9 @@
         <field name="model">barbershop.appointment</field>
         <field name="arch" type="xml">
             <form string="">
+            <button string="Prueba" name="prueba" type="object" class="oe_highlight"/>
                 <sheet>
+                
                     <group>
                         <group>
                             <field name="name"></field>
@@ -15,6 +17,7 @@
                         <group>
                             <field name="start_at"></field>
                             <field name="end_at"></field>
+                            <field name="barber_id"></field>
                         </group>
                         <notebook>
                             <page string="Servicios" name="service_ids">
@@ -37,6 +40,8 @@
                 <field name="start_at"></field>
                 <field name="end_at"></field>
                 <field name="state_id"></field>
+                <field name="amount_services"></field>
+
             </tree>
         </field>
     </record>
@@ -88,6 +93,16 @@
                             <div class="row">
                                 <div class="col-12">
                                     <span>Hasta: <field name="end_at"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Monto: <field name="amount_services"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Barbero: <field name="barber_id"/></span>
                                 </div>
                             </div>
                         </div>
