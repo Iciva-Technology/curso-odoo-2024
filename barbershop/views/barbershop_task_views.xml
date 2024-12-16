@@ -15,10 +15,39 @@
         </field>
     </record>   
 
+    <record id="barbershop_task_view_form" model="ir.ui.view">
+        <field name="name">barbershop.task.view.form</field>
+        <field name="model">barbershop.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="employee"/>    
+                        </group> 
+                        <group>
+                            <field name="deadline"/>
+                            <field name="priority"/>     
+                        </group> 
+                        <notebook>
+                            <page string="Descripcion" name="description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>                 
+                    </group>
+                </sheet>
+             </form>
+        </field>
+    </record>
+
+   
+
+
     <record id="barbershop_task_action" model="ir.actions.act_window">
         <field name="name">Tareas</field>
         <field name="res_model">barbershop.task</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
 </odoo>
