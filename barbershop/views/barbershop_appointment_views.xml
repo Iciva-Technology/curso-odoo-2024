@@ -15,6 +15,7 @@
                         <group>
                             <field name="start_at"></field>
                             <field name="end_at"></field>
+                            <field name="employee_id"></field>
                         </group>
                         <notebook>
                             <page string="Servicios" name="service_ids">
@@ -37,6 +38,7 @@
                 <field name="start_at"></field>
                 <field name="end_at"></field>
                 <field name="state_id"></field>
+                <field name="employee_id"></field>
             </tree>
         </field>
     </record>
@@ -78,6 +80,11 @@
                             <div class="row">
                                 <div class="col-12">
                                     <span>Cliente: <field name="partner_id"/></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>Barbero: <field name="employee_id"/></span>
                                 </div>
                             </div>
                             <div class="row">

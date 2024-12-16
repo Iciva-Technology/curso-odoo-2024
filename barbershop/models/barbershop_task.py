@@ -8,6 +8,10 @@ class BarbershopTask(models.Model):
     name = fields.Char(string="Nombre")
     description = fields.Char(string="Descripcion")
     deadline = fields.Date(string="Fecha Limite", required=True)
-    employee = fields.Char(string="Empleado")
+    employee_id = fields.Many2one('hr.employee', string="Empleado")
     priority = fields.Selection([('low', 'Baja'), ('medium', 'Media'), ('high', 'Alta')], string="Prioridad")
-    
+    state = fields.Selection([
+        ('assigned', 'Asignada'),
+        ('process', 'En Proceso'),
+        ('completed', 'Completada'),
+        ('cancelled', 'Cancelada')], string="Estado")

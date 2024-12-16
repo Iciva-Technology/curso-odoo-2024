@@ -5,7 +5,7 @@
     'license': 'AGPL-3',
     'author': 'Iciva Technology',
     'depends': [
-        'contacts',
+        'contacts', 'hr'
     ],
     'data': [
         'security/ir.model.access.csv',

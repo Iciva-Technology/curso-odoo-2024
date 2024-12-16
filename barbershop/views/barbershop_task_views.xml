@@ -9,8 +9,9 @@
                 <field name="name"/>
                 <field name="description"/>
                 <field name="deadline"/>
-                <field name="employee"/>
+                <field name="employee_id"/>
                 <field name="priority"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>   
@@ -24,11 +25,12 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="employee"/>    
+                            <field name="employee_id"/>    
+                            <field name="state"/>      
                         </group> 
                         <group>
                             <field name="deadline"/>
-                            <field name="priority"/>     
+                            <field name="priority"/>
                         </group> 
                         <notebook>
                             <page string="Descripcion" name="description">
@@ -41,13 +43,10 @@
         </field>
     </record>
 
-   
-
-
     <record id="barbershop_task_action" model="ir.actions.act_window">
         <field name="name">Tareas</field>
         <field name="res_model">barbershop.task</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
 </odoo>
