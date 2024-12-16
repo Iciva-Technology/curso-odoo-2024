@@ -6,7 +6,9 @@ class BarbershopAppointment(models.Model):
     _description = "Citas"
 
     name = fields.Char(string="Referencia")
-    date = fields.Date(string="Fecha de cita", required=True)
+    #date = fields.Date(string="Fecha de cita", required=True)
+    from_time = fields.Datetime(string='Desde')
+    to_time = fields.Datetime(string='Hasta')
     confirm = fields.Boolean(string="Confirmacion de cita")
     partner_id = fields.Many2one('res.partner', string="Cliente")
     service_ids = fields.Many2many('barbershop.service', string="Servicios")
