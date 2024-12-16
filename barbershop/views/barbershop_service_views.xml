@@ -44,7 +44,7 @@
                         <page string="Descipción" name="description">
                             <field name="description"/>
                         </page>
-                        <page string="Cuidados posteriores" name="aftercare" attrs="{'invisible': ['|', ('difficulty', '!=', 'hard'), ('duration', '>', 10)]}">
+                        <page string="Cuidados posteriores" name="aftercare" attrs="{'invisible': [('difficulty', '!=', 'hard')]}">
                             <field name="aftercare" attrs="{'required': [('difficulty', '=', 'hard')]}"/>
                         </page>
                     </notebook>

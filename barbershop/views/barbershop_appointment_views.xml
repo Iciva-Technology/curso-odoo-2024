@@ -10,7 +10,7 @@
                         <group>
                             <field name="name"></field>
                             <field name="partner_id"></field>
-                            <field name="state_id" options="{'no_create': True}"/>
+                            <field name="state_id" options="{'no_create': False}"/>
                         </group>
                         <group>
                             <field name="start_at"></field>
