@@ -22,6 +22,11 @@
                                 <field name="service_ids" widget="many2many"></field>
                             </page>
                         </notebook>
+                        <notebook>
+                            <page string="Precio Total" name="total price">
+                                <field name="total_price"></field>
+                            </page>
+                        </notebook>
                     </group>
                 </sheet>
             </form>
