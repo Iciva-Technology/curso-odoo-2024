@@ -10,6 +10,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'views/res_partner_views.xml',
+        'views/hr_employee_views.xml',
         'views/barbershop_appointment_views.xml',
         'views/barbershop_service_views.xml',
         'views/barbershop_tasks_views.xml',

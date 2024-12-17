@@ -3,3 +3,5 @@ access_barbershop_appointment,barbershop_appointment,model_barbershop_appointmen
 access_barbershop_service,barbershop_service,model_barbershop_service,base.group_user,1,1,1,1
 access_barbershop_state,barbershop_state,model_barbershop_state,base.group_user,1,1,1,1
 access_barbershop_tasks,barbershop_tasks,model_barbershop_tasks,base.group_user,1,1,1,1
+access_res_partner,res_partner,model_res_partner,base.group_user,1,1,1,1
+access_hr_employee,hr_employee,model_hr_employee,base.group_user,1,1,1,1
