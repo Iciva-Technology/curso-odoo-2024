@@ -90,8 +90,8 @@
     <record id="barbershop_task_action" model="ir.actions.act_window">
         <field name="name">Tareas</field>
         <field name="res_model">barbershop.task</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
-
 </odoo>
+
