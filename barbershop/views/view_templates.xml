@@ -24,6 +24,50 @@
     </field>
 </record>
 
+<!-- Kanban view -->
+
+https://www.cybrosys.com/blog/advanced-kanban-view-in-odoo-14
+
+<record id="<model_name>_view_kanban" model="ir.ui.view">
+    <field name="name">view.name</field>
+    <field name="model">model.name</field>
+    <field name="arch" type="xml">
+        <kanban class="o_kanban_mobile" create="0" sample="1">
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                        <div class="o_kanban_record_top">
+                            <div class="o_kanban_record_headings row">
+                                <div class="col-12">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="my_field_1"/>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Label fiel 2: <field name="my_field_2"/></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <span>Label fiel 3: <field name="my_field_3"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+<!-- Kanban attributes -->
+
+default_group_by="field"
+records_draggable="false"
+_group_expand_states
+
 <!-- Notebook -->
 
 <notebook>
@@ -55,7 +99,52 @@
     </field>
 </record>
 
+<!-- Inherit view -->
+
+<record id="<inherit_xml_id>" model="ir.ui.view">
+    <field name="name"><inherit_xml_id>.inherit.<module_name></field>
+    <field name="model">model_name</field>
+    <field name="inherit_id" ref="<inherit_xml_id>" />
+    <field name="arch" type="xml">
+        <!-- view template -->
+    </field>
+</record>
+
+<-- Security -->
+
+<record id="module_category_<module_name>" model="ir.module.category">
+	<field name="name">Category name</field>
+    <field name="description">Description.</field>
+</record>
+
+<record id="group_<model_name>_<description>" model="res.groups">
+	<field name="name">Group name</field>
+	<field name="implied_ids" eval="[(4, ref('<group_xml_id>'))]"/>
+	<field name="category_id" ref="<category_xml_id>"/>
+</record>
+
+<!-- Smart button -->
+
+<div class="oe_button_box" name="button_box">
+	<button 
+		class="oe_stat_button"
+		type="object"
+		name="my_action"
+		icon="fa-icon"
+		context="{'active_id': active_id}">
+		<field string="String" name="my_field" widget="statinfo"/>
+	</button>
+</div>
+
+def my_action(self):
+        self.ensure_one()
+        active_id = self.env.context.get('active_id')
+        action = self.env["ir.actions.actions"]._for_xml_id("my_window_action")
+        action['domain'] = []
+        return action
+
 <!-- Actions -->
+
 <record id="action_<model_name>" model="ir.actions.act_window">
     <field name="name">action.name</field>
     <field name="res_model">model.name</field>
@@ -126,4 +215,3 @@ options="{'clickable': 'True', 'fold_field': 'fold'}"/>
  - many2many
  - one2many
  - many2many_tags
- 
