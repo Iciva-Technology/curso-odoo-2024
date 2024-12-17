@@ -11,6 +11,11 @@
         parent="menu_barbershop_root"
         action="barbershop.action_barbershop_service"
         sequence="2"
-    />
+    /><menuitem
+        id="menu_barbershop_tasks"
+        name="Tareas"
+        action="barbershop.action_barbershop_tasks"
+        parent="menu_barbershop_root"
+        sequence="3"/>
     
 </odoo>

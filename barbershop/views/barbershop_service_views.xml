@@ -28,6 +28,15 @@
                             context="{'active_id': active_id}">
                             <field string="Citas" name="number_of_appointments" widget="statinfo"/>
                         </button>
+                        <button 
+                            class="oe_stat_button"
+                            type="object"
+                            name="action_tasks_id"
+                            icon="fa-calendar-check-o"
+                            context="{'tasks_active_id': active_id}"
+                            attrs="{'invisible': [('number_of_tasks', '=', 0)]}">
+                            <field string="Tareas" name="number_of_tasks" widget="statinfo"/>
+                        </button>
                     </div>
                     <field name="image" widget="image" class="oe_avatar"/>
                     <group>

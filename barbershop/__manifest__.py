@@ -6,11 +6,13 @@
     'author': 'Iciva Technology',
     'depends': [
         'contacts',
+        'hr',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/barbershop_appointment_views.xml',
         'views/barbershop_service_views.xml',
+        'views/barbershop_tasks_views.xml',
         'views/barbershop_menu.xml',
     ],
     'assets': {
