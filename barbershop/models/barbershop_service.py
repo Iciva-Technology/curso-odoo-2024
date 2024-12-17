@@ -7,7 +7,7 @@ class BarbershopService(models.Model):
 
     name = fields.Char(string="Nombre", required=True)
     description = fields.Html(string="Descripción")
-    duration = fields.Integer(string="Duración", help="Duración del servicio expresado en minutos")
+    duration = fields.Float(string="Duración", help="Duración del servicio expresado en minutos")
     number_of_appointments = fields.Integer(string="Número de citas", compute="_compute_number_of_appointments")
     number_of_tasks = fields.Integer(string="Número de tareas", compute="_compute_number_of_tasks")
     counts_appoinments_ids = fields.Many2many('barbershop.appointments', string="Citas")
