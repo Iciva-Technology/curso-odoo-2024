@@ -6,6 +6,7 @@
     'author': 'Iciva Technology',
     'depends': [
         'contacts',
+        'hr',
     ],
     'data': [
         'security/ir.model.access.csv',
