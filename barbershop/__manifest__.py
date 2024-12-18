@@ -5,7 +5,7 @@
     'license': 'AGPL-3',
     'author': 'Iciva Technology',
     'depends': [
-        'contacts', 'hr'
+        'contacts', 'hr',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -13,6 +13,7 @@
         'views/barbershop_service_views.xml',
         'views/barbershop_task_views.xml',
         'views/hr_employee_views.xml',
+        'views/res_partner_views.xml',
         'views/barbershop_menu.xml',
   
     ],
