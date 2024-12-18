@@ -10,7 +10,7 @@
                 <button 
                     class="oe_stat_button"
                     type="object"
-                    name="action_appointment_id"
+                    name="barber_appointment_id"
                     icon="fa-calendar-check-o"
                     context="{'employee_id': active_id}">
                     <field string="Citas" name="number_of_appointments" widget="statinfo"/>
