@@ -9,9 +9,12 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/barbershop_security.xml',
+        'data/barbershop_state_data.xml',
         'views/barbershop_appointment_views.xml',
         'views/barbershop_service_views.xml',
         'views/barbershop_menu.xml',
+        'views/res_partner_views.xml',
     ],
     'assets': {
         'web.assets_frontend': [
