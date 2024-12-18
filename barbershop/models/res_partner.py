@@ -7,5 +7,4 @@ class ResPartner(models.Model):
     gender = fields.Selection([
         ('female', 'Femenino'),
         ('masculine', 'Masculino'),
-        ('other', 'Otro')
-    ], string="Genero", required=True)
+        ('other', 'Otro')], string="Genero", required=True)

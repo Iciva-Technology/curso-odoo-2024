@@ -3,11 +3,11 @@ from odoo import models, fields, api
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    employee_id = fields.Many2one('barbershop.appointment', string="Barbero")
+    appointment_ids = fields.One2many('barbershop.appointment', 'employee_id', string="Citas")
     number_of_appointments = fields.Integer(string="Cantidad de Citas", compute="_compute_number_of_appointments")
     active = fields.Boolean(string="Activo", default=True)
 
-    @api.depends('employee_id')
+    @api.depends('appointment_ids')
     def _compute_number_of_appointments(self):
         for employee in self:
             appointments = self.env['barbershop.appointment'].search([('employee_id', '=', employee.id)])
