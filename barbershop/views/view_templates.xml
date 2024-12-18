@@ -203,7 +203,7 @@ odoo.define('<module_name>.<custom_name>', function (require) {
 
     publicWidget.registry.<custom_name> = publicWidget.Widget.extend({
         selector: '.custom_class',
-        xmlDependencies: ['<template_path>'],
+        xmlDepControllerendencies: ['<template_path>'],
         events: {
             'input input[id=name]': '_validateAlphabetic',
         },
