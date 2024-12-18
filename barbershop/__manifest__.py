@@ -18,6 +18,7 @@
         'views/barbershop_menu.xml',
         'views/res_partner_views.xml',
         'views/sign_up.xml',
+        'views/reservation.xml',
         'data/res_partner_data.xml',
     ],
     'assets': {

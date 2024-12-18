@@ -44,7 +44,7 @@
                 <field name="partner_id" />
                 <field name="barber_id" />
                 <field name="start_at" />
-                <field name="end_at" />
+                <field name="end_at" readonly="1"/>
                 <field name="state_id" />
                 <field name="total_price" readonly="1"/>
             </tree>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <span>Hasta: <field name="end_at" /></span>
+                                    <span>Hasta: <field name="end_at" readonly="1"/></span>
                                 </div>
                             </div>
                             <div class="row">

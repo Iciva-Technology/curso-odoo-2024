@@ -12,10 +12,10 @@ class BarbershopAppointment(models.Model):
 
     name = fields.Char(string="Referencia")
     active = fields.Boolean(string='Activo', default=True)
-    start_at = fields.Datetime(string="Desde", required=True)
-    end_at = fields.Datetime(string="Hasta", required=False, compute="_compute_end_at", readonly=True, )
+    start_at = fields.Datetime(string="Desde", required=False)
+    end_at = fields.Datetime(string="Hasta", compute="_compute_end_at", readonly=True)
     partner_id = fields.Many2one('res.partner', string="Cliente")
-    state_id = fields.Many2one('barbershop.state', string="Estado")
+    state_id = fields.Many2one('barbershop.state', string="Estado", default="Solicitado")
     service_ids = fields.Many2many('barbershop.service', string="Servicios")
     barber_id = fields.Many2one('hr.employee', string="Barbero", required=True)
     total_price = fields.Float(string="Precio Total", compute="_compute_total_price", store=True, readonly=True)
