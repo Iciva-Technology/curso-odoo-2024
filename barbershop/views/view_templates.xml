@@ -143,6 +143,93 @@ def my_action(self):
         action['domain'] = []
         return action
 
+<!-- Website template -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="custom_template" name="Custom template">
+
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    <div class="container">
+                        <form id="contactus_form" action="/website/form/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="barbershop.appointment" data-success-mode="redirect" data-success-page="/" data-pre-fill="true">
+
+                            <div class="form-group s_website_form_field">
+                                <label for="name">Nombre<span class="s_website_form_mark">*</span></label>
+                                <input type="text" class="form-control s_website_form_input" name="name" id="name" required="true"/>
+                            </div>
+
+                            <div class="mb-0 py-2 col-12 s_website_form_submit" data-name="Submit Button">
+                                <div style="width: 200px;" class="s_website_form_label"/>
+                                <a href="#" role="button" class="btn btn-primary btn-lg s_website_form_send">Submit</a>
+                                <span id="s_website_form_result"></span>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </t>
+
+    </template>
+
+</odoo>
+
+<!-- Controller -->
+
+from odoo import http
+from odoo.http import request
+
+
+class Main(http.Controller):
+
+    @http.route('/path', type='http', auth="public", website=True)
+    def owl_custom(self, **kw):
+        return request.render(
+            'template',
+            {
+                
+            }
+        )
+
+<!--Javascript -->
+
+odoo.define('<module_name>.<custom_name>', function (require) {
+    'use strict';
+
+    var publicWidget = require('web.public.widget');
+
+    publicWidget.registry.<custom_name> = publicWidget.Widget.extend({
+        selector: '.custom_class',
+        xmlDependencies: ['<template_path>'],
+        events: {
+            'input input[id=name]': '_validateAlphabetic',
+        },
+
+        init: function (parent, options) {
+            this._super.apply(this, arguments);
+            console.log("init")
+        },
+
+        _validateAlphabetic: function (ev) {
+            let currentTarget = $(ev.currentTarget)[0];
+            let newValue = currentTarget.value.replace(/[0-9_.,&%$#@!^*()+=;:"<>?/\\|]/g, '');
+            currentTarget.value = newValue; 
+        },
+    });
+
+});
+
+<!--Manifest Assets -->
+
+'assets': {
+    'web.assets_frontend': [
+        'barbershop/static/src/**/*',
+    ],
+},
+
 <!-- Actions -->
 
 <record id="action_<model_name>" model="ir.actions.act_window">
