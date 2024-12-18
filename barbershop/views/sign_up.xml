@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <template id="sign_in" name="Custom template">
+
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty sign-in-barbershop">
+
+                <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    <header>
+                        <h1>
+                            Bienvenido
+                        </h1>
+                        <h4>
+                            Ingresa tus datos
+                        </h4>
+                    </header>
+                    <div class="container">
+                        <form id="sing_in_form" action="/website/form/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="res.partner" data-success-mode="redirect" data-success-page="/" data-pre-fill="true">
+
+                            <div class="form-group s_website_form_field">
+                                <label for="name">Nombre<span class="s_website_form_mark">*</span></label>
+                                <input type="text" class="form-control s_website_form_input" name="name" id="name" required="true" t-att-value='default_name'/>
+                            </div>
+
+                            <div class="form-group s_website_form_field">
+                                <label for="date">Fecha de nacimiento<span class="s_website_form_mark">*</span></label>
+                                <input type="date" class="form-control s_website_form_input" name="date" id="date" required="true"/>
+                            </div>
+
+                            <div class="form-group s_website_form_field">
+                                <label for="phone">Teléfono<span class="s_website_form_mark">*</span></label>
+                                <input type="text" class="form-control s_website_form_input" name="phone" id="phone" required="true"/>
+                            </div>
+
+                            <div class="form-group s_website_form_field">
+                                <label for="email">Correo<span class="s_website_form_mark">*</span></label>
+                                <input type="text" class="form-control s_website_form_input" name="email" id="email" required="true"/>
+                            </div>
+
+                            <div class="form-group s_website_form_field">
+                                <label for="email">País<span class="s_website_form_mark">*</span></label>
+                                <select class="detail" name="country_id" id='country_id'>
+                                    <option value=""></option>
+                                    <t t-foreach="country_list" t-as="country" t-key="country.id">
+                                        <option 
+                                            t-att-value="country.id">
+                                            <t t-esc="country.name" />
+                                        </option>service_ids = fields.Many2many('barbershop.service', string="Servicios")
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="mb-0 py-2 col-12 s_website_form_submit d-flex justify-content-center" data-name="Submit Button">
+                                <a href="#" role="button" class="btn btn-primary btn-lg s_website_form_send">Enviar</a>
+                                <span id="s_website_form_result"></span>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+
+    </template>
+    
+</odoo>

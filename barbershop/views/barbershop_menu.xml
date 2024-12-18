@@ -3,14 +3,24 @@
     <menuitem
         id="menu_barbershop_root"
         name="Barbería"
+        sequence="1"
+        groups='barbershop.group_barbershop_secretary,barbershop.group_barbershop_manager'/>
+
+    <menuitem
+        id="menu_barbershop_appointment"
+        name="Citas"
+        parent="menu_barbershop_root"
         action="barbershop.barbershop_appointment_action"
-        sequence="1"/>
+        sequence="2"
+        groups='barbershop.group_barbershop_secretary'
+    />
     <menuitem
         id="menu_barbershop_service"
         name="Servicio"
         parent="menu_barbershop_root"
         action="barbershop.action_barbershop_service"
-        sequence="2"
+        sequence="3"
+        groups='barbershop.group_barbershop_manager'
     />
     
 </odoo>

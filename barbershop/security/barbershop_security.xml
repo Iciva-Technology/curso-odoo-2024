@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='1'>
+        <record id="module_category_barbershop" model="ir.module.category">
+            <field name="name">Barbería</field>
+            <field name="description">Permisos de seguridad del módulo de barbería</field>
+        </record>
+
+        <record id="group_barbershop_secretary" model="res.groups">
+            <field name="name">Secretario</field>
+            <field name="category_id" ref="module_category_barbershop"/>
+        </record>
+
+        <record id="group_barbershop_manager" model="res.groups">
+            <field name="name">Gerente</field>
+            <field name="category_id" ref="module_category_barbershop"/>
+            <field name="implied_ids" eval="[(4, ref('barbershop.group_barbershop_secretary'))]"/>
+        </record>
+
+    </data>
+</odoo>
