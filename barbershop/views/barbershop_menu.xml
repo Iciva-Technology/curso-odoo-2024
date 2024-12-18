@@ -12,5 +12,13 @@
         action="barbershop.action_barbershop_service"
         sequence="2"
     />
+
+    <menuitem
+        id="menu_barbershop_task"
+        name="Tareas"
+        parent="menu_barbershop_root"
+        action="barbershop.barbershop_task_action"
+        sequence="3"
+    />
     
 </odoo>
