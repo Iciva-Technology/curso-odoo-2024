@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="model_barbershop_appointment" model="ir.model">
+        <field name="website_form_key">create_appointment</field>
+        <field name="website_form_default_field_id" ref="field_barbershop_appointment__partner_id" />
+        <field name="website_form_access">True</field>
+        <field name="website_form_label">Crear Cita</field>
+    </record>
+    <function model="ir.model.fields" name="formbuilder_whitelist">
+        <value>barbershop.appointment</value>
+        <value eval="[
+            'partner_id',
+            'barber_id',
+            'start_at',
+            'service_ids'
+        ]" />
+    </function>
+</odoo>

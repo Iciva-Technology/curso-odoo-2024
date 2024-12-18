@@ -19,8 +19,18 @@ odoo.define('barbershop.sign_in', function (require) {
             console.log('ev', ev)
             let currentTarget = $(ev.currentTarget)[0];
             let newValue = currentTarget.value.replace(/[0-9_.,&%$#@!^*()+=;:"<>?/\\|]/g, '');
-            currentTarget.value = newValue; 
+            currentTarget.value = newValue;
         },
+
+        _/* send: function () {
+
+            this._rpc({
+                route: '/make_appoiment/sent',
+                params: {},
+            }).then(function (actionData) {
+                //return self.do_action(actionData);
+            });
+        } */
     });
 
 });
