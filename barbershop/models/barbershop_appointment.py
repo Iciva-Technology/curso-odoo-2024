@@ -28,7 +28,6 @@ class BarbershopAppointment(models.Model):
         for appointment in self:
             total = sum(service.price for service in appointment.service_ids)
             appointment.total_price = total
-            _logger.info(f"Computed total price for appointment {appointment.id}: {total}")
     
     @api.depends('service_ids')
     def _compute_end_at(self):
@@ -39,20 +38,14 @@ class BarbershopAppointment(models.Model):
                 services = self.env['barbershop.service'].browse(appointment.service_ids.ids)
                 total_duration = sum(service.duration for service in services)
                 appointment.end_at = appointment.start_at + timedelta(minutes=total_duration)
-                _logger.info(f"Computed end_at for appointment {appointment.id}: {appointment.end_at}")
             else:
                 appointment.end_at = None
-                _logger.warning(f"Missing start_at for appointment {appointment.id}. Cannot compute end_at.")
-
 
     def _validate_no_overlap(self, vals):
         """Valida que no existan conflictos de horarios para el barbero."""
         start_at = vals.get('start_at', self.start_at)
         end_at = vals.get('end_at', self.end_at)
         barber_id = vals.get('barber_id', self.barber_id.id)
-
-        _logger.info("Validating appointment overlap...")
-        _logger.debug(f"Start: {start_at}, End: {end_at}, Barber: {barber_id}")
 
         if start_at and end_at and barber_id:
             overlapping_appointments = self.search([
@@ -62,12 +55,10 @@ class BarbershopAppointment(models.Model):
                 ('end_at', '>', start_at),
             ])
             if overlapping_appointments:
-                _logger.warning(f"Overlap detected with appointments: {overlapping_appointments.ids}")
                 raise ValidationError(
                     "El barbero ya tiene una cita en el rango de horario seleccionado. "
                     "Por favor elija otro horario o barbero."
                 )
-        _logger.info("No overlapping appointments found.")
 
     def _validate_max_appointments_per_day(self, vals):
         """Valida que el barbero no tenga más citas de las permitidas en un día."""
@@ -96,20 +87,15 @@ class BarbershopAppointment(models.Model):
     @api.model
     def create(self, vals):
         """Sobrescribe create para validar conflictos de horarios y número máximo de citas."""
-        _logger.info(f"Creating a new appointment with values: {vals}")
         self._validate_no_overlap(vals)
         self._validate_max_appointments_per_day(vals)
         result = super(BarbershopAppointment, self).create(vals)
-        _logger.info(f"Appointment created with ID: {result.id}")
         return result
 
     def write(self, vals):
         """Sobrescribe write para validar conflictos de horarios y número máximo de citas."""
-        _logger.info(f"Updating appointment ID(s): {self.ids} with values: {vals}")
         if not vals.get('active', True):
             vals['state_id'] = self.env.ref('barbershop.barbershop_state_cancelled').id
         self._validate_no_overlap(vals)
         self._validate_max_appointments_per_day(vals)
-        _logger.info(f"Update completed for appointment ID(s): {self.ids}")
         return super(BarbershopAppointment, self).write(vals)
-
