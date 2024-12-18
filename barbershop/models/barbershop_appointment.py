@@ -5,11 +5,13 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class BarbershopAppointment(models.Model):
     _name = "barbershop.appointment"
     _description = "Citas"
 
     name = fields.Char(string="Referencia")
+    active = fields.Boolean(string='Activo', default=True)
     start_at = fields.Datetime(string="Desde", required=True)
     end_at = fields.Datetime(string="Hasta", required=False, compute="_compute_end_at", readonly=True, )
     partner_id = fields.Many2one('res.partner', string="Cliente")
@@ -104,18 +106,10 @@ class BarbershopAppointment(models.Model):
     def write(self, vals):
         """Sobrescribe write para validar conflictos de horarios y número máximo de citas."""
         _logger.info(f"Updating appointment ID(s): {self.ids} with values: {vals}")
-        for record in self:
-            _logger.debug(f"Validating record with ID: {record.id}")
-            record._validate_no_overlap(vals)
-            record._validate_max_appointments_per_day(vals)
-        result = super(BarbershopAppointment, self).write(vals)
+        if not vals.get('active', True):
+            vals['state_id'] = self.env.ref('barbershop.barbershop_state_cancelled').id
+        self._validate_no_overlap(vals)
+        self._validate_max_appointments_per_day(vals)
         _logger.info(f"Update completed for appointment ID(s): {self.ids}")
-        return result
-
-    def unlink(self):
-        for record in self:
-            # Archivar la cita en lugar de eliminarla
-            record.state_id = self.env.ref('barbershop.state_archived')  # Supón que tienes un estado 'archivado'
-            _logger.info(f"Appointment {record.id} archived instead of deleted.")
-        return super(BarbershopAppointment, self).unlink()
+        return super(BarbershopAppointment, self).write(vals)
 
