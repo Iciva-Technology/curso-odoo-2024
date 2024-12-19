@@ -4,6 +4,7 @@
     <template id="sign_in" name="Custom template">
  
         <t t-call="website.layout">
+            <link rel="stylesheet" href="barbershop/static/src/css/my_styles.css"/>
             <div id="wrap" class="oe_structure oe_empty sign-in-barbershop">
 
                 <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
