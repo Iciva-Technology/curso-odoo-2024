@@ -17,6 +17,7 @@
         'views/barbershop_menu.xml',
         'data/barbershop_state_data.xml',
         'data/res_partner_data.xml',
+        'views/appointment_consultation.xml',
         'views/sign_in.xml',
     ],
     'assets': {

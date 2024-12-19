@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<odoo>
+    <template id="appointment_consultation" name="Consult Appointment">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty appointment-consultation-barbershop">
+                <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    <div class="container">
+                        <h2 >Consultar Cita</h2>
+                        <form id="appointment-form">
+                            <div class="form-group">
+                                <label for="appointment-number">Número de Cita:</label>
+                                <input type="text" id="appointment-number" class="form-control" placeholder="Ingrese el número de la cita"/>
+                            </div>
+                            <button type="button" id="search-appointment" class="btn btn-primary">Buscar Cita</button>
+                        </form>
+                        <div id="appointment-details" style="display: none; margin-top: 20px;">
+                            <h3>Detalles de la Cita</h3>
+                            <p><strong>Cliente:</strong> <span id="appointment-client"></span></p>
+                            <p><strong>Fecha:</strong> <span id="appointment-date"></span></p>
+                            <p><strong>Servicio:</strong> <span id="appointment-service"></span></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>
