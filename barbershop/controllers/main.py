@@ -67,7 +67,7 @@ class Main(http.Controller):
             }
         )
         
-    @http.route('/make_appointment/sent', type='http', auth='public', methods=['POST'], website=True)
+    @http.route('/make_appointment/sent', type='json', auth='public', csrf=False, methods=['POST'],  website=True)
     def make_appointment_sent(self, data, **kw):
         try:
             # Log inicial de la petición

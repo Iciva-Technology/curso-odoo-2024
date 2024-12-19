@@ -9,7 +9,7 @@
                         <h4 class="text-center">Completa los datos para tu cita</h4>
                     </header>
                     <div class="container">
-                        <form id="make_appointment_form" action="/website/form/" method="post"
+                        <form id="make_appointment_form" action="/make_appointment/sent" method="post"
                             enctype="multipart/form-data" class="o_mark_required" data-mark="*"
                             data-model_name="barbershop.appointment" data-success-mode="redirect"
                             data-success-page="/" data-pre-fill="true">

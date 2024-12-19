@@ -13,6 +13,8 @@
         'security/ir.model.access.csv',
         'security/barbershop_security.xml',
         'data/barbershop_state_data.xml',
+        'data/request_validators/barbershop_appoiment.xml',
+        'data/request_validators/res_partner_data.xml',
         'views/barbershop_appointment_views.xml',
         'views/barbershop_service_views.xml',
         'views/barbershop_menu.xml',
@@ -20,8 +22,7 @@
         'views/web/sign_up.xml',
         'views/web/make_appoiment.xml',
         'views/web/appointment_consultation.xml',
-        'data/request_validators/res_partner_data.xml',
-        'data/request_validators/barbershop_appoimnet.xml',
+        
     ],
     'assets': {
         'web.assets_frontend': [

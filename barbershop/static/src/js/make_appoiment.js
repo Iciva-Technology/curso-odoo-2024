@@ -80,7 +80,10 @@ odoo.define('barbershop.make_appointment', function (require) {
         _sendAppointment: function () {
             const self = this;
             const formData = new FormData(this.$form[0]);
-            console.log(formData.get('start_at'));
+            console.log('start_at', formData.get('start_at'));
+            console.log('barber_id', formData.get('barber_id'));
+            console.log('partner_id', formData.get('partner_id'));
+            console.log('service_ids', formData.get('service_ids'));
 
             this._rpc({
                 route: '/make_appointment/sent',
@@ -93,6 +96,7 @@ odoo.define('barbershop.make_appointment', function (require) {
                     }
                 },
             }).then(function (result) {
+                console.log()
                 if (result.success) {
                     self._showSuccess('Cita reservada exitosamente');
                     setTimeout(function () {
