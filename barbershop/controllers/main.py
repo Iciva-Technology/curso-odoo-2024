@@ -3,6 +3,7 @@ from odoo.http import request
 from datetime import datetime
 import uuid
 import logging
+import json
 import pytz
 
 # Creamos el logger específico para este controlador
@@ -10,19 +11,11 @@ _logger = logging.getLogger(__name__)
 
 def format_start_at_for_odoo(start_at):
     """
-    Convierte una fecha con formato ISO (2024-12-19T13:17) al formato de Odoo (2024-12-19 13:17)
-    
-    Args:
-        start_at (str): Fecha en formato ISO con 'T' como separador
-        
-    Returns:
-        str: Fecha formateada para Odoo
+    Convierte una fecha con formato ISO (2024-12-19T13:17) al formato de Odoo (2024-12-19 13:17:00)
     """
     try:
-        # Convertir el formato con 'T' al formato que Odoo espera
         dt = datetime.strptime(start_at, '%Y-%m-%dT%H:%M')
-        formatted_date = dt.strftime('%Y-%m-%d %H:%M')
-        return formatted_date
+        return dt.strftime('%Y-%m-%d %H:%M:%S')
     except ValueError as e:
         raise ValueError(f"Error al formatear la fecha: {str(e)}")
 
@@ -60,45 +53,58 @@ class Main(http.Controller):
             }
         )
         
-    @http.route('/make_appointment/sent', type='json', auth='public', methods=['POST'])
+    @http.route('/make_appointment/sent', type='http', auth='public', methods=['POST'], website=True)
     def make_appointment_sent(self, data, **kw):
         try:
-            # Log al inicio de la petición
+            # Log inicial de la petición
             _logger.info('Iniciando petición POST appointment con datos: %s', data)
             
-            start_at = start_at.replace('T', ' ') #format_start_at_for_odoo(data.get('start_at'))
+            # Procesar y formatear los datos
+            start_at = format_start_at_for_odoo(data.get('start_at'))
+            partner_id = int(data.get('partner_id'))
+            barber_id = int(data.get('barber_id'))
+            service_ids = [(6, 0, [int(x) for x in data.get('service_ids', [])])]
             
-            # Log de los datos procesados
-            _logger.debug('Datos a procesar: %s', data)
-            _logger.debug('Fecha formateada: %s', start_at)
+            # Crear el registro
+            appointment = request.env['barbershop.appointment'].sudo().create({
+                'name': str(uuid.uuid4()),
+                'start_at': start_at,
+                'service_ids': service_ids,
+                'partner_id': partner_id,
+                'barber_id': barber_id,
+            })
             
-            try:
-                # Creamos el registro
-                appointment = request.env['barbershop.appointment'].sudo().create({
-                    'name': uuid.uuid4(),
-                    'start_at': start_at,
-                    'service_ids': [(6, 0, [int(x) for x in data['service_ids']])],
-                    'partner_id': data.get('partner_id'),
-                    'barber_id': data.get('barber_id')
-                })
-                _logger.info('Cita creada exitosamente con ID: %s', appointment.id)
-                
-            except Exception as db_error:
-                _logger.error('Error al crear la cita en la base de datos: %s', str(db_error))
-                raise
-            
-            # Log de respuesta exitosa
-            _logger.debug('Enviando respuesta exitosa para appointment_id: %s', appointment.id)
+            # Log de éxito
+            _logger.info('Cita creada exitosamente con ID: %s', appointment.id)
             return {
                 'success': True,
                 'appointment_id': appointment.id,
                 'message': 'Cita creada exitosamente'
             }
-            
+        
         except Exception as e:
-            # Log de error general
+            # Log de error
             _logger.error('Error general en make_appointment_sent: %s', str(e), exc_info=True)
             return {
                 'success': False,
                 'error': str(e)
             }
+            
+    @http.route('/make_appointment/get', type='http', auth='public', methods=['GET'], csrf=False)
+    def get_appointments(self):
+        appointments = request.env['barbershop.appointment'].sudo().search([])
+        data = [
+            {
+                'id': appointment.id,
+                'partner_id': appointment.partner_id.name,
+                'barber_id': appointment.barber_id.name,
+                'start_at': appointment.start_at,
+                'service_ids': [service.name for service in appointment.service_ids],
+            }
+            for appointment in appointments
+        ]
+        return http.Response(
+            json.dumps(data),
+            content_type='application/json',
+            status=200
+        )
