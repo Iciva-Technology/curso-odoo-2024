@@ -14,6 +14,8 @@
         'email',
         'phone',
         'country_id',
+        'id_number',
+        'gender',
         ]"/>
     </function>
 </odoo>
