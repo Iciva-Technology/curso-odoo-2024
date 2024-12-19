@@ -17,7 +17,6 @@
         'views/barbershop_service_views.xml',
         'views/barbershop_menu.xml',
         'views/res_partner_views.xml',
-        'views/appointment_consultation.xml',
         'views/web/sign_up.xml',
         'views/web/make_appoiment.xml',
         'views/web/appointment_consultation.xml',
