@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="make_appoiment" name="Make Appointment">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty make-appointment-barbershop">
+                <section class="s_website_form" data-snippet="s_website_form">
+                    <header class="d-flex flex-column justify-content-center">
+                        <h1 class="text-center">Reservar Cita</h1>
+                        <h4 class="text-center">Completa los datos para tu cita</h4>
+                    </header>
+                    <div class="container">
+                        <form id="make_appointment_form" action="/website/form/" method="post"
+                            enctype="multipart/form-data" class="o_mark_required" data-mark="*"
+                            data-model_name="barbershop.appointment" data-success-mode="redirect"
+                            data-success-page="/" data-pre-fill="true">
+                            <input type="hidden" name="csrf_token"
+                                t-att-value="request.csrf_token()" />
+
+                            <div class="form-group mb-3 s_website_form_field">
+                                <label for="partner_id">Cliente<span class="s_website_form_mark">*</span></label>
+                                <select class="form-control" name="partner_id" id="partner_id"
+                                    required="true">
+                                    <option value=""></option>
+                                    <t t-foreach="partner_list" t-as="partner" t-key="partner.id">
+                                        <option t-att-value="partner.id">
+                                            <t t-esc="partner.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3 s_website_form_field">
+                                <label for="barber_id">Barbero<span class="s_website_form_mark">*</span></label>
+                                <select class="form-control" name="barber_id" id="barber_id"
+                                    required="true">
+                                    <option value=""></option>
+                                    <t t-foreach="barber_list" t-as="barber" t-key="barber.id">
+                                        <option t-att-value="barber.id">
+                                            <t t-esc="barber.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3 s_website_form_field">
+                                <label for="start_at">Fecha y Hora de Inicio<span
+                                        class="s_website_form_mark">*</span></label>
+                                <input type="datetime-local" class="form-control" name="start_at"
+                                    id="start_at" placeholder="YYYY-MM-DDTHH:MM" />
+                            </div>
+
+                            <div class="form-group mb-3 s_website_form_field">
+                                <label for="service_ids">Servicios<span class="s_website_form_mark">
+                                    *</span></label>
+                                <select class="form-control" name="service_ids" id="service_ids"
+                                    multiple="multiple" required="true">
+                                    <t t-foreach="service_list" t-as="service" t-key="service.id">
+                                        <option t-att-value="service.id">
+                                            <t t-esc="service.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <!-- removed s_website_form_submit -->
+                            <div class="mb-0 py-2 col-12 d-flex justify-content-center">
+                                <button id="appoiment_send_button" class="btn btn-primary btn-lg">
+                                    Reservar</button>
+                                <span id="s_website_form_result"></span>
+                            </div>
+
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>
